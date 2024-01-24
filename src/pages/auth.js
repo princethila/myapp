@@ -76,7 +76,7 @@ const  Auth  = () => {
         </header>
       <body className="md:flex md:flex-auto md:p-12 px-2 pt-6">
             <div className="md:w-1/2 md:mr-2 h-3/6">
-                <div className='text-center text-2xl font-bold pb-12 md:text-3xl'> Hi {currentuser[0].name}, welcome to your user page!</div>
+                <div className='text-center text-2xl font-bold pb-12 md:text-3xl px-2'> Hi {currentuser[0].name}, welcome to your user page!</div>
                 
                 <div className='px-4 mx-2 md:px-2 py-12 bg-blue-950 rounded-2xl'>
                   <div className='text-white text-6xl'>
