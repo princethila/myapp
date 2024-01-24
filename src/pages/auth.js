@@ -70,7 +70,11 @@ const  Auth  = () => {
         }
       };
     return (
-        <div className="flex flex-auto p-12">
+      <>
+      <header className='pl-6 pb-6 pt-6 font-bold text-xl border-b-0 border-black bg-gradient-to-r from-blue-900 from-20%  via-red-500  to-white'>
+          <p className='text-white'>BusTag Connect 🎟️</p>
+        </header>
+      <div className="flex flex-auto p-12">
             <div className="border-2 w-2/5 mr-2 h-3/6">
                 <div className='text-center font-sm font-bold'> Hi {currentuser[0].name}, welcome to your user page!</div>
                 <div className='pt-4 font-bold'>Account details:</div>
@@ -104,6 +108,8 @@ const  Auth  = () => {
             
             </div>
         </div>
+      </>
+        
     )
 }
 
