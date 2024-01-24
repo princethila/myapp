@@ -71,43 +71,67 @@ const  Auth  = () => {
       };
     return (
       <>
-      <header className='pl-6 pb-6 pt-6 font-bold text-xl border-b-0 border-black bg-gradient-to-r from-blue-900 from-20%  via-red-500  to-white'>
+      <header className='pl-6 py-12 md:py-6 font-bold text-xl border-b-0 border-black bg-gradient-to-r from-blue-900 from-20%  via-red-500  to-white'>
           <p className='text-white'>BusTag Connect 🎟️</p>
         </header>
-      <div className="flex flex-auto p-12">
-            <div className="border-2 w-2/5 mr-2 h-3/6">
-                <div className='text-center font-sm font-bold'> Hi {currentuser[0].name}, welcome to your user page!</div>
-                <div className='pt-4 font-bold'>Account details:</div>
-                <div>Card number: {currentuser[0].card_no}</div>
-                <div>Account balance: 
-                    <NumericFormat value={balance} displayType={'text'} thousandSeparator={true} prefix={'R'} />
+      <body className="md:flex md:flex-auto md:p-12 px-2 pt-6">
+            <div className="md:w-1/2 md:mr-2 h-3/6">
+                <div className='text-center text-2xl font-bold pb-12 md:text-3xl'> Hi {currentuser[0].name}, welcome to your user page!</div>
+                
+                <div className='px-4 mx-2 md:px-2 py-12 bg-blue-950 rounded-2xl'>
+                  <div className='text-white text-6xl'>
+                      <NumericFormat value={balance} displayType={'text'} thousandSeparator={true} prefix={'R'} />
+                  </div>
+                  <p className='text-gray-500'>Card no.: {currentuser[0].card_no}</p>
                 </div>
+                
             </div>
-            <div className="border-2 w-2/5 ml-2 h-3/6">Top up
-                <div className=''>
-                    <label className='text-gray-950 text-sm pr-4'>Card number:</label>
-                    <input className='border-2' type="text" value={cardnumber} onChange={handleCardnumberChange} />
+            <div className='md:w-1/2 content-center pt-4 flex min-h-full flex-col justify-center'>
+              <div className='bg-gray-200 rounded-2xl py-6 md:p-20 mx-2 md:mx-8 border-2 border-black h-full'>
+                <div className="border-2 ml-2 h-3/6">
+                  <div>
+                    <h2 className='text-center text-2xl font-bold leading-9'>Top up your account</h2>
+                  </div>
+                  <div className='space-y-4 px-8'>
+                    <div className=''>
+                          <label className='text-gray-900 text-sm'>Card number</label>
+                          <div>
+                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="text" value={cardnumber} onChange={handleCardnumberChange} />
+                          </div>
+                      </div>
+                      <div className=''>
+                          <label className=' text-gray-900 text-sm'>Expiry date</label>
+                          <div>
+                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="text" value={expirydate} placeholder="mm/dd/yyyy" onChange={handleExpirydateChange} />
+                          </div>
+                      </div>
+                      <div className=''>
+                          <label className=' text-gray-900 text-sm'>CVV</label>
+                          <div>
+                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="text" value={cvv} onChange={handleCvvChange} />
+                          </div>
+                          
+                      </div>
+                      <div className=''>
+                          <label className=' text-gray-900 text-sm'>Amount (R)</label>
+                          <div>
+                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="number" value={amount} onChange={handleAmountChange} />
+                          </div>
+                          <p style={{ color: 'red' }}>{errorMessage}</p>
+                      </div>
+                      <div className='flex flex-col'>
+                          <button className='flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black' onClick={handleTransaction}>Top up</button>
+                          <p>{transMessage}</p>
+                      </div>
+                  </div>
+                    
+                
                 </div>
-                <div className=''>
-                    <label className=' text-gray-950 text-sm pr-4'>Expiry date:</label>
-                    <input className='border-2' type="text" value={expirydate} placeholder="mm/dd/yyyy" onChange={handleExpirydateChange} />
-                </div>
-                <div className=''>
-                    <label className=' text-gray-950 text-sm pr-4'>Cvv:</label>
-                    <input className='border-2' type="text" value={cvv} onChange={handleCvvChange} />
-                </div>
-                <div className=''>
-                    <label className=' text-gray-950 text-sm pr-4'>Amount (R):</label>
-                    <input className='border-2' type="number" value={amount} onChange={handleAmountChange} />
-                    <p style={{ color: 'red' }}>{errorMessage}</p>
-                </div>
-                <div className='flex flex-col'>
-                    <button className='bg-black py-2 px-12 my-2 rounded-lg text-white w-min' onClick={handleTransaction}>Top up</button>
-                    <p>{transMessage}</p>
-                </div>
+              </div>
+            </div>
             
-            </div>
-        </div>
+            
+        </body>
       </>
         
     )

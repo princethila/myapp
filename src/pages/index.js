@@ -54,16 +54,16 @@ const  Home  = () => {
       };
     return (
       <>
-        <header className='pl-6 pb-6 pt-6 font-bold text-xl border-b-0 border-black bg-gradient-to-r from-blue-900 from-20%  via-red-500  to-white'>
+        <header className='pl-6 py-12 md:py-6 font-bold text-xl border-b-0 border-black bg-gradient-to-r from-blue-900 from-20%  via-red-500  to-white'>
           <p className='text-white'>BusTag Connect 🎟️</p>
         </header>
         <body className='md:flex md:flex-auto p-6'>
-            <div className='w-1/2'>
-              <p className='px-12 pt-44 font-extrabold text-6xl font-sans text-blue-950'>Top up your Rea Vaya bus tag in  <span className='text-red-500'>less than 5 minutes</span> , easy!</p>
-              <p className='px-12 pt-4'>Bypass the lengthy line and top up your bus tag hassle free. Try our service and stay up to date with all information partaning to your daily commute.</p>
+            <div className='md:w-1/2'>
+              <p className='md:px-12 pt-12 md:pt-44 font-extrabold text-4xl md:text-6xl font-sans text-blue-950'>Top up your Rea Vaya bus tag in  <span className='text-red-500'>less than 5 minutes</span> , easy!</p>
+              <p className='md:px-12 pt-4'>Bypass lengthy queues and top up your bus tag hassle free. Try our service and stay up to date with all information pertaining to your daily commute.</p>
             </div>
-            <div className='w-1/2 content-center pt-28 flex min-h-full flex-col justify-center'>
-              <div className='bg-gray-200 rounded-2xl p-20 mx-8 border-2 border-black h-full'>
+            <div className='md:w-1/2 content-center pt-16 md:pt-28 flex min-h-full flex-col justify-center'>
+              <div className='bg-gray-200 rounded-2xl py-12 md:p-20 md:mx-8 border-2 border-black h-full'>
                 <div>
                   <h2 className='text-center text-2xl font-bold leading-9'>Sign in to your account</h2>
                 </div>
