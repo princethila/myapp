@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import userData from '.././data/data';
 import { useNavigate } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 
 const  Home  = () => {
@@ -25,12 +26,19 @@ const  Home  = () => {
         // Validate the credentials
         const usern = username;
         const user = userData.find((user) => user.username === username && user.password === password);
+        
     
         if (user) {
+          const cvvnum = user.cvv;
+          const expirynum = user.expirydate;
+          const cardnum = user.card_no;
+          const bankcardnum = user.bankcardnumber;
+          const balancenum = user.balance;
+          const namenum = user.name;
           // Successful login
           setLoggedin(true)
           setLoginMessage('Login successful!');
-          navigate('./auth',{state:usern})
+          navigate('./auth',{state:{username:usern, cvv:cvvnum, expirydate:expirynum, cardnumber:cardnum, balance:balancenum, name:namenum, bankcardnumber:bankcardnum}})
           // You can perform additional actions here, such as redirecting the user or setting up a session
         } else {
           // Failed login
@@ -81,9 +89,11 @@ const  Home  = () => {
                       </div>
                       
                   </div>
-                  <div className='flex flex-row space-x-2'>
+                  <div className='flex flex-col space-x-2'>
                       <button className='flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black' onClick={handleLogin}>Login</button>
-                      <button className='flex w-full justify-center rounded-md bg-gray-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black' onClick={handleSignup}>Signup</button>
+                      {/* <button className='flex w-full justify-center rounded-md bg-gray-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black' onClick={handleSignup}>Signup</button> */}
+                      <p className='text-center pt-2'>Don't have an account yet? <span className='underline'><Link to={"./SignUp"}>Sign up</Link></span></p>
+                      
                   </div>
                   
                   <p className='text-red-500 text-center'>{loginMessage}</p> 

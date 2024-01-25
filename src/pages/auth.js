@@ -17,13 +17,20 @@ const  Auth  = () => {
     
 
     const { state } = useLocation(); // This one I saw in some other stackoverflow answer
-    console.log(state);
-    const username = state;
+    console.log("This is the state",{state});
+    const username = state.username;
+    const usernamename = state.nameof;
+    const userbalance = state.balance;
+    const usercard = state.cardnumber;
     console.log("This is the user",{username});
-
+    
     const currentuser = userData.filter(((user) => user.username === username))
-    const [balance, setBalance] = useState(currentuser[0].balance);
+    // if (currentuser){
+    //   balance = setBalance(currentuser[0].balance)
+    // } else {balance = 0}
+    
     console.log(currentuser);
+    const [balance, setBalance] = useState(userbalance);
 
     const balance_left = currentuser[0].balance
 
@@ -56,6 +63,7 @@ const  Auth  = () => {
       const handleTransaction = () => {
         // Validate the details
         const user = userData.find((user) => user.bankcardnumber === cardnumber && user.expirydate === expirydate && user.cvv === cvv);
+        const userval = state.username;
     
         if (user) {
           setBalance(parseInt(amount)+ parseInt(balance));
@@ -63,7 +71,11 @@ const  Auth  = () => {
           console.log('Transaction successful!');
           
           // You can perform additional actions here, such as redirecting the user or setting up a session
-        } else {
+        } else if (userval){
+          setBalance(parseInt(amount)+ parseInt(balance));
+          setTransMessage('Transaction successful!');
+          console.log('Transaction successful!');}
+          else {
           // Failed login
           setTransMessage('Invalid details');
           console.log('Invalid details');
@@ -76,13 +88,13 @@ const  Auth  = () => {
         </header>
       <body className="md:flex md:flex-auto md:p-12 px-2 pt-6">
             <div className="md:w-1/2 md:mr-2 h-3/6">
-                <div className='text-center text-2xl font-bold pb-12 md:text-3xl px-2'> Hi {currentuser[0].name}, welcome to your user page!</div>
+                <div className='text-center text-2xl font-bold pb-12 md:text-3xl px-2'> Hi {state.name}, welcome to your user page!</div>
                 
                 <div className='px-4 mx-2 md:px-2 py-12 bg-blue-950 rounded-2xl'>
                   <div className='text-white text-6xl'>
                       <NumericFormat value={balance} displayType={'text'} thousandSeparator={true} prefix={'R'} />
                   </div>
-                  <p className='text-gray-500'>Card no.: {currentuser[0].card_no}</p>
+                  <p className='text-gray-500'>Card no.: {usercard}</p>
                 </div>
                 
             </div>
@@ -102,7 +114,7 @@ const  Auth  = () => {
                       <div className=''>
                           <label className=' text-gray-900 text-sm'>Expiry date</label>
                           <div>
-                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="text" value={expirydate} placeholder="mm/dd/yyyy" onChange={handleExpirydateChange} />
+                            <input className='pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm sm:leading-6' type="date" value={expirydate} placeholder="yyyy/mm/dd" onChange={handleExpirydateChange} />
                           </div>
                       </div>
                       <div className=''>
